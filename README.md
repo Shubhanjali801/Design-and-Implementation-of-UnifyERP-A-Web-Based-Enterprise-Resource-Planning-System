@@ -1,10 +1,11 @@
 ## ERP Management System
+```
 erp-management-system
 │
 ├── client (React Frontend)
 │   ├── public
 │   │
-│   ├── src
+│   ├── src  
 │   │   ├── assets
 │   │   │   ├── images
 │   │   │   └── icons
@@ -48,7 +49,7 @@ erp-management-system
 │
 │
 ├── server (Node + Express Backend)
-│
+│   │
 │   ├── config
 │   │   └── db.js
 │   │
@@ -95,3 +96,5 @@ erp-management-system
 │
 │
 └── README.md
+
+```
