@@ -1,31 +1,61 @@
-const express = require("express");
+// ─────────────────────────────────────────────────────────────
+// routes/auth.routes.js
+// ─────────────────────────────────────────────────────────────
+const express        = require("express");
+const router         = express.Router();
 const { register, login } = require("../controllers/auth.controller");
+const protect        = require("../middleware/auth.middleware");
+const authorizeRoles = require("../middleware/role.middleware");
+const User           = require("../models/User");
 
-const router = express.Router();
-
-// @desc    Register a new user
-// @route   POST /api/auth/register
-// @access  Public
 router.post("/register", register);
+router.post("/login",    login);
 
-// @desc    Authenticate user & get token
-// @route   POST /api/auth/login
-// @access  Public
-router.post("/login", login);
+// Get current user profile
+router.get("/me", protect, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    if (!user) return res.status(404).json({ success: false, message: "User not found" });
+    res.json({ success: true, data: user });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
 
-// @desc    Get current user profile
-// @route   GET /api/auth/profile
-// @access  Private
-// router.get("/profile", auth, getProfile); // TODO: Implement profile endpoint
+// Admin: list / update / delete users
+router.get("/users",     protect, authorizeRoles("admin"), async (req, res) => {
+  try {
+    const page  = parseInt(req.query.page)  || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const query = req.query.search
+      ? { $or: [{ name: { $regex: req.query.search, $options: "i" } }, { email: { $regex: req.query.search, $options: "i" } }] }
+      : {};
+    const total = await User.countDocuments(query);
+    const users = await User.find(query).skip((page - 1) * limit).limit(limit).sort({ createdAt: -1 });
+    res.json({ success: true, data: users, total, currentPage: page, totalPages: Math.ceil(total / limit) });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
 
-// @desc    Update user profile
-// @route   PUT /api/auth/profile
-// @access  Private
-// router.put("/profile", auth, updateProfile); // TODO: Implement profile update
+router.put("/users/:id",    protect, authorizeRoles("admin"), async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true, runValidators: true });
+    if (!user) return res.status(404).json({ success: false, message: "User not found" });
+    res.json({ success: true, message: "User updated", data: user });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
 
-// @desc    Change password
-// @route   PUT /api/auth/change-password
-// @access  Private
-// router.put("/change-password", auth, changePassword); // TODO: Implement password change
+router.delete("/users/:id", protect, authorizeRoles("admin"), async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+    if (!user) return res.status(404).json({ success: false, message: "User not found" });
+    res.json({ success: true, message: "User deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
 
 module.exports = router;
