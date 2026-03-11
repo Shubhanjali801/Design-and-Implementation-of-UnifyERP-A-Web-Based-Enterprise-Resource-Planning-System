@@ -3,13 +3,14 @@
 // ─────────────────────────────────────────────────────────────
 const express        = require("express");
 const router         = express.Router();
-const { register, login } = require("../controllers/auth.controller");
+const { register, login, logout } = require("../controllers/auth.controller");
 const protect        = require("../middleware/auth.middleware");
 const authorizeRoles = require("../middleware/role.middleware");
 const User           = require("../models/User");
 
 router.post("/register", register);
 router.post("/login",    login);
+router.post("/logout",   protect, logout); 
 
 // Get current user profile
 router.get("/me", protect, async (req, res) => {
