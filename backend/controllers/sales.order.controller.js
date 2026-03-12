@@ -114,7 +114,7 @@ exports.createSalesOrder = async (req, res) => {
       customer,
       products:   lineItems,
       totalPrice,
-      status:    "pending",
+     status: req.body.status || "pending",
     });
 
     // Deduct stock after successful order creation
