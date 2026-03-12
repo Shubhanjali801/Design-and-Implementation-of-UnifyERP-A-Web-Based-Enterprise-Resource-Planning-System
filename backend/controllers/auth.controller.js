@@ -29,8 +29,8 @@ exports.register = async (req, res) => {
 
     // Create user (password hashed by pre-save middleware)
     const user = await User.create({
-      name:     name.trim(),
-      email:    email.toLowerCase().trim(),
+      name: name.trim(),
+      email: email.toLowerCase().trim(),
       password,
       role,
     });
@@ -38,10 +38,10 @@ exports.register = async (req, res) => {
     res.status(201).json({
       msg: "User registered successfully",
       user: {
-        _id:       user._id,
-        name:      user.name,
-        email:     user.email,
-        role:      user.role,
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
         createdAt: user.createdAt,
       },
     });
@@ -86,10 +86,10 @@ exports.login = async (req, res) => {
       msg: "Login successful!",
       token,
       user: {
-        _id:   user._id,
-        name:  user.name,
+        _id: user._id,
+        name: user.name,
         email: user.email,
-        role:  user.role,
+        role: user.role,
       },
     });
 

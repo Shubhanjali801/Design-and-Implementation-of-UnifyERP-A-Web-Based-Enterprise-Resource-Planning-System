@@ -1,4 +1,4 @@
-const { verifyToken }    = require("../utils/generate.token");
+const { verifyToken } = require("../utils/generate.token");
 const { tokenBlocklist } = require("../controllers/auth.controller");
 
 module.exports = (req, res, next) => {

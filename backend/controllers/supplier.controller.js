@@ -21,7 +21,6 @@ const getSuppliers = async (req, res) => {
   }
 };
 
-
 // GET single supplier
 const getSupplier = async (req, res) => {
 
@@ -52,7 +51,6 @@ const getSupplier = async (req, res) => {
 
 };
 
-
 // CREATE supplier
 const createSupplier = async (req, res) => {
 
@@ -81,7 +79,6 @@ const createSupplier = async (req, res) => {
   }
 
 };
-
 
 // UPDATE supplier
 const updateSupplier = async (req, res) => {
@@ -116,7 +113,6 @@ const updateSupplier = async (req, res) => {
   }
 
 };
-
 
 // DELETE supplier
 const deleteSupplier = async (req, res) => {

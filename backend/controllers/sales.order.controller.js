@@ -1,19 +1,19 @@
 const SalesOrder = require("../models/Sales.Order");
-const Product    = require("../models/Product");
+const Product = require("../models/Product");
 
 // @desc    Get all sales orders
 // @route   GET /api/sales-orders
 // @access  Private
 exports.getSalesOrders = async (req, res) => {
   try {
-    const page  = parseInt(req.query.page)  || 1;
+    const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
-    const skip  = (page - 1) * limit;
+    const skip = (page - 1) * limit;
 
     let filter = {};
     if (req.query.status) filter.status = req.query.status;
 
-    const total  = await SalesOrder.countDocuments(filter);
+    const total = await SalesOrder.countDocuments(filter);
     const orders = await SalesOrder.find(filter)
       .populate("customer", "name contact")
       .populate("products.product", "title SKU price")
@@ -104,17 +104,17 @@ exports.createSalesOrder = async (req, res) => {
       totalPrice += linePrice * item.quantity;
 
       lineItems.push({
-        product:  product._id,
+        product: product._id,
         quantity: item.quantity,
-        price:    linePrice,
+        price: linePrice,
       });
     }
 
     const order = await SalesOrder.create({
       customer,
-      products:   lineItems,
+      products: lineItems,
       totalPrice,
-     status: req.body.status || "pending",
+      status: req.body.status || "pending",
     });
 
     // Deduct stock after successful order creation
@@ -125,8 +125,8 @@ exports.createSalesOrder = async (req, res) => {
     }
 
     const populated = await order.populate([
-      { path: "customer",          select: "name contact" },
-      { path: "products.product",  select: "title SKU price" },
+      { path: "customer", select: "name contact" },
+      { path: "products.product", select: "title SKU price" },
     ]);
 
     res.status(201).json({
@@ -171,7 +171,7 @@ exports.updateSalesOrder = async (req, res) => {
     await order.save();
 
     const populated = await order.populate([
-      { path: "customer",         select: "name contact" },
+      { path: "customer", select: "name contact" },
       { path: "products.product", select: "title SKU price" },
     ]);
 

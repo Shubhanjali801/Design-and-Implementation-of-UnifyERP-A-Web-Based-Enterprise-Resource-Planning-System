@@ -10,12 +10,12 @@ const {
 } = require("../controllers/supplier.controller");
 
 router.route("/")
-.get(getSuppliers)
-.post(createSupplier);
+  .get(getSuppliers)
+  .post(createSupplier);
 
 router.route("/:id")
-.get(getSupplier)
-.put(updateSupplier)
-.delete(deleteSupplier);
+  .get(getSupplier)
+  .put(updateSupplier)
+  .delete(deleteSupplier);
 
 module.exports = router;

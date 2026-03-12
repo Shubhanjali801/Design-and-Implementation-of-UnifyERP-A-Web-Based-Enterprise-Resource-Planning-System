@@ -5,20 +5,20 @@ const Customer = require("../models/Customer");
 // @access  Private
 exports.getCustomers = async (req, res) => {
   try {
-    const page  = parseInt(req.query.page)  || 1;
+    const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
-    const skip  = (page - 1) * limit;
+    const skip = (page - 1) * limit;
 
     let filter = {};
     if (req.query.search) {
       filter.$or = [
-        { name:    { $regex: req.query.search, $options: "i" } },
+        { name: { $regex: req.query.search, $options: "i" } },
         { contact: { $regex: req.query.search, $options: "i" } },
         { address: { $regex: req.query.search, $options: "i" } },
       ];
     }
 
-    const total     = await Customer.countDocuments(filter);
+    const total = await Customer.countDocuments(filter);
     const customers = await Customer.find(filter)
       .sort({ createdAt: -1 })
       .skip(skip)
@@ -72,7 +72,7 @@ exports.createCustomer = async (req, res) => {
     }
 
     const customer = await Customer.create({
-      name:    name.trim(),
+      name: name.trim(),
       contact: contact.trim(),
       address: address.trim(),
     });
@@ -101,7 +101,7 @@ exports.updateCustomer = async (req, res) => {
     }
 
     // Only update provided fields
-    if (name    !== undefined) customer.name    = name.trim();
+    if (name !== undefined) customer.name = name.trim();
     if (contact !== undefined) customer.contact = contact.trim();
     if (address !== undefined) customer.address = address.trim();
 

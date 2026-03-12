@@ -1,4 +1,4 @@
-const Invoice    = require("../models/Invoice");
+const Invoice = require("../models/Invoice");
 const SalesOrder = require("../models/Sales.Order");
 
 // @desc    Get all invoices
@@ -6,9 +6,9 @@ const SalesOrder = require("../models/Sales.Order");
 // @access  Private
 exports.getInvoices = async (req, res) => {
   try {
-    const page  = parseInt(req.query.page)  || 1;
+    const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
-    const skip  = (page - 1) * limit;
+    const skip = (page - 1) * limit;
 
     let filter = {};
     if (req.query.status) filter.status = req.query.status;
@@ -16,7 +16,7 @@ exports.getInvoices = async (req, res) => {
       filter.invoiceNumber = { $regex: req.query.search, $options: "i" };
     }
 
-    const total    = await Invoice.countDocuments(filter);
+    const total = await Invoice.countDocuments(filter);
     const invoices = await Invoice.find(filter)
       .populate("salesOrder", "status totalPrice customer")
       .populate("items.product", "title SKU")
@@ -99,21 +99,21 @@ exports.createInvoice = async (req, res) => {
     // Build items array from sales order products
     // Each item stores the snapshot price at the time of invoicing
     const items = salesOrder.products.map((item) => ({
-      product:  item.product._id,
+      product: item.product._id,
       quantity: item.quantity,
-      price:    item.price,               // price stored on the sales order line
-      total:    item.price * item.quantity,
+      price: item.price,               // price stored on the sales order line
+      total: item.price * item.quantity,
     }));
 
     const totalAmount = items.reduce((sum, item) => sum + item.total, 0);
 
     // Auto-generate invoice number: INV-YYYYMMDD-XXXXX
-    const datePart   = new Date().toISOString().slice(0, 10).replace(/-/g, "");
-    const count      = await Invoice.countDocuments();
+    const datePart = new Date().toISOString().slice(0, 10).replace(/-/g, "");
+    const count = await Invoice.countDocuments();
     const invoiceNumber = `INV-${datePart}-${String(count + 1).padStart(5, "0")}`;
 
     const invoice = await Invoice.create({
-      salesOrder:    soId,
+      salesOrder: soId,
       invoiceNumber,
       items,
       totalAmount,
@@ -163,8 +163,8 @@ exports.updateInvoice = async (req, res) => {
       });
     }
 
-    if (req.body.status)  invoice.status  = req.body.status;
-    if (req.body.dueDate) invoice.dueDate  = req.body.dueDate;
+    if (req.body.status) invoice.status = req.body.status;
+    if (req.body.dueDate) invoice.dueDate = req.body.dueDate;
 
     await invoice.save();
 

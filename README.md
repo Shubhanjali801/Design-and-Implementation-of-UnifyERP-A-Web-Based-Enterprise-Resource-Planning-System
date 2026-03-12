@@ -13,17 +13,17 @@ erp-management-system
 │   │   ├── components
 │   │   │   ├── Navbar.jsx
 │   │   │   ├── Sidebar.jsx
-│   │   │   ├── ProductTable.jsx
-│   │   │   ├── CustomerTable.jsx
-│   │   │   └── ProtectedRoute.jsx
+│   │   │   ├── Product.table.jsx
+│   │   │   ├── Customer.table.jsx
+│   │   │   └── Protected.route.jsx
 │   │   │
 │   │   ├── pages
 │   │   │   ├── Dashboard.jsx
 │   │   │   ├── Products.jsx
 │   │   │   ├── Customers.jsx
 │   │   │   ├── Suppliers.jsx
-│   │   │   ├── SalesOrders.jsx
-│   │   │   ├── PurchaseOrders.jsx
+│   │   │   ├── Sales.orders.jsx
+│   │   │   ├── Purchase,orders.jsx
 │   │   │   ├── GRN.jsx
 │   │   │   ├── Invoices.jsx
 │   │   │   ├── Login.jsx
@@ -35,9 +35,9 @@ erp-management-system
 │   │   │
 │   │   ├── services
 │   │   │   ├── api.js
-│   │   │   ├── productService.js
-│   │   │   ├── orderService.js
-│   │   │   └── authService.js
+│   │   │   ├── product.service.js
+│   │   │   ├── order.service.js
+│   │   │   └── auth.service.js
 │   │   │
 │   │   ├── utils
 │   │   │   └── helpers.js
@@ -54,42 +54,42 @@ erp-management-system
 │   │   └── db.js
 │   │
 │   ├── controllers
-│   │   ├── authController.js
-│   │   ├── productController.js
-│   │   ├── customerController.js
-│   │   ├── supplierController.js
-│   │   ├── salesOrderController.js
-│   │   ├── purchaseOrderController.js
-│   │   ├── grnController.js
-│   │   └── invoiceController.js
+│   │   ├── auth.controller.js
+│   │   ├── product.controller.js
+│   │   ├── customer.controller.js
+│   │   ├── supplier.controller.js
+│   │   ├── sales.order.controller.js
+│   │   ├── purchase.order.controller.js
+│   │   ├── grn.controller.js
+│   │   └── invoice.controller.js
 │   │
 │   ├── models
 │   │   ├── User.js
 │   │   ├── Product.js
 │   │   ├── Customer.js
 │   │   ├── Supplier.js
-│   │   ├── SalesOrder.js
-│   │   ├── PurchaseOrder.js
+│   │   ├── Sales.order.js
+│   │   ├── Purchase.order.js
 │   │   ├── GRN.js
 │   │   └── Invoice.js
 │   │
 │   ├── routes
-│   │   ├── authRoutes.js
-│   │   ├── productRoutes.js
-│   │   ├── customerRoutes.js
-│   │   ├── supplierRoutes.js
-│   │   ├── salesOrderRoutes.js
-│   │   ├── purchaseOrderRoutes.js
-│   │   ├── grnRoutes.js
-│   │   └── invoiceRoutes.js
+│   │   ├── auth.routes.js
+│   │   ├── product.routes.js
+│   │   ├── customer.routes.js
+│   │   ├── supplier.routes.js
+│   │   ├── sales.order.routes.js
+│   │   ├── purchase.order.routes.js
+│   │   ├── grn.routes.js
+│   │   └── invoice.routes.js
 │   │
 │   ├── middleware
-│   │   ├── authMiddleware.js
-│   │   ├── roleMiddleware.js
-│   │   └── errorMiddleware.js
+│   │   ├── auth.middleware.js
+│   │   ├── role.middleware.js
+│   │   └── error.middleware.js
 │   │
 │   ├── utils
-│   │   └── generateToken.js
+│   │   └── generate.token.js
 │   │
 │   ├── server.js
 │   └── package.json

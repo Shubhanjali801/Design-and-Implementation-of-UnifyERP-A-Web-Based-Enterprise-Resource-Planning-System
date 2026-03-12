@@ -5,14 +5,14 @@ const PurchaseOrder = require("../models/Purchage.Order"); // Note: matches exis
 // @access  Private
 exports.getPurchaseOrders = async (req, res) => {
   try {
-    const page   = parseInt(req.query.page)   || 1;
-    const limit  = parseInt(req.query.limit)  || 10;
-    const skip   = (page - 1) * limit;
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const skip = (page - 1) * limit;
 
     let filter = {};
     if (req.query.status) filter.status = req.query.status;
 
-    const total  = await PurchaseOrder.countDocuments(filter);
+    const total = await PurchaseOrder.countDocuments(filter);
     const orders = await PurchaseOrder.find(filter)
       .populate("supplier", "name contact")
       .populate("products.product", "title SKU")
@@ -119,7 +119,7 @@ exports.updatePurchaseOrder = async (req, res) => {
 
     const { status, products } = req.body;
 
-    if (status)   order.status   = status;
+    if (status) order.status = status;
     if (products) order.products = products;
 
     await order.save();

@@ -1,21 +1,21 @@
-const GRN          = require("../models/GRN");
+const GRN = require("../models/GRN");
 const PurchaseOrder = require("../models/Purchage.Order");
-const Product       = require("../models/Product");
+const Product = require("../models/Product");
 
 // @desc    Get all GRNs
 // @route   GET /api/grn
 // @access  Private (Admin / Inventory)
 exports.getGRNs = async (req, res) => {
   try {
-    const page  = parseInt(req.query.page)  || 1;
+    const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
-    const skip  = (page - 1) * limit;
+    const skip = (page - 1) * limit;
 
     let filter = {};
     if (req.query.status) filter.status = req.query.status;
 
     const total = await GRN.countDocuments(filter);
-    const grns  = await GRN.find(filter)
+    const grns = await GRN.find(filter)
       .populate("purchaseOrder", "status supplier")
       .populate("receivedItems.product", "title SKU stock")
       .sort({ createdAt: -1 })
@@ -98,9 +98,9 @@ exports.createGRN = async (req, res) => {
     for (const item of receivedItems) {
       if (
         !item.product ||
-        item.orderedQuantity  === undefined ||
+        item.orderedQuantity === undefined ||
         item.receivedQuantity === undefined ||
-        item.price            === undefined
+        item.price === undefined
       ) {
         return res.status(400).json({
           success: false,
