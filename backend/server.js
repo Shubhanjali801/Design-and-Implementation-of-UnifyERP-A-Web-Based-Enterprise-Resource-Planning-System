@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const helmet = require("helmet")       
 const connectDB = require("./config/db");
 const { notFound, errorHandler } = require("./middleware/error.middleware");
 
@@ -12,7 +13,8 @@ connectDB();
 const app = express();
 
 // ── Core Middleware ───────────────────────────────────────────
-app.use(cors());
+app.use(helmet())                                    // Security
+app.use(cors({ origin: "http://localhost:5173" }))   
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
