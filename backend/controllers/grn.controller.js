@@ -135,9 +135,9 @@ exports.createGRN = async (req, res) => {
       status: isPartial ? "partial" : "complete",
     });
 
-    // Mark purchase order as received
-    await PurchaseOrder.findByIdAndUpdate(poId, { status: "received" });
-
+    // Mark purchase order as is Partial confirmed o.w. received
+    await PurchaseOrder.findByIdAndUpdate(poId, {status: isPartial ? "confirmed" : "received" });
+    
     const populated = await grn.populate([
       { path: "purchaseOrder", select: "status supplier" },
       { path: "receivedItems.product", select: "title SKU stock" },

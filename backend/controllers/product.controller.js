@@ -219,10 +219,10 @@ exports.updateProduct = async (req, res) => {
     if (req.body.price !== undefined) updateData.price = Number(req.body.price);
     if (req.body.stock !== undefined) updateData.stock = Number(req.body.stock);
     if (req.body.reorderLevel !== undefined) updateData.reorderLevel = Number(req.body.reorderLevel);
-    if (req.body.description !== undefined) updateData.description = req.body.description ? req.body.description.trim() : undefined;
-    if (req.body.category !== undefined) updateData.category = req.body.category ? req.body.category.trim() : undefined;
-    if (req.body.unit !== undefined) updateData.unit = req.body.unit;
-    if (req.body.isActive !== undefined) updateData.isActive = req.body.isActive;
+    // if (req.body.description !== undefined) updateData.description = req.body.description ? req.body.description.trim() : undefined;
+    // if (req.body.category !== undefined) updateData.category = req.body.category ? req.body.category.trim() : undefined;
+    // if (req.body.unit !== undefined) updateData.unit = req.body.unit;
+    // if (req.body.isActive !== undefined) updateData.isActive = req.body.isActive;
 
     const product = await Product.findByIdAndUpdate(
       req.params.id,
