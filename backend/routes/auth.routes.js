@@ -2,11 +2,16 @@
 // routes/auth.routes.js
 // ─────────────────────────────────────────────────────────────
 const express = require("express");
-const router = express.Router();
-const { register, login, logout } = require("../controllers/auth.controller");
-const protect = require("../middleware/auth.middleware");
 const authorizeRoles = require("../middleware/role.middleware");
 const User = require("../models/User");
+const protect = require("../middleware/auth.middleware");
+const { 
+  register, 
+  login, 
+  logout 
+} = require("../controllers/auth.controller");
+
+const router = express.Router();
 
 router.post("/register", register);
 router.post("/login", login);
@@ -39,6 +44,7 @@ router.get("/users", protect, authorizeRoles("admin"), async (req, res) => {
   }
 });
 
+// Admin: update users
 router.put("/users/:id", protect, authorizeRoles("admin"), async (req, res) => {
   try {
     const user = await User.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true, runValidators: true });
@@ -49,6 +55,7 @@ router.put("/users/:id", protect, authorizeRoles("admin"), async (req, res) => {
   }
 });
 
+// Admin: list specifice users
 router.get("/users/:id", protect, authorizeRoles("admin"), async (req, res) => {
   try {
 
@@ -75,6 +82,8 @@ router.get("/users/:id", protect, authorizeRoles("admin"), async (req, res) => {
 
   }
 });
+
+// Admin: delete users
 router.delete("/users/:id", protect, authorizeRoles("admin"), async (req, res) => {
   try {
     const user = await User.findByIdAndDelete(req.params.id);

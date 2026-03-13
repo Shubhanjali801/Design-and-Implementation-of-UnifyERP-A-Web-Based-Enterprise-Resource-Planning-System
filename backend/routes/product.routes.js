@@ -1,11 +1,16 @@
 const express = require("express");
-const router = express.Router();
+const authorizeRoles = require("../middleware/role.middleware");
 const {
-  getProducts, getProductsByCategory, getLowStockProducts,
-  getProduct, createProduct, updateProduct, deleteProduct,
+  getProducts, 
+  getProductsByCategory, 
+  getLowStockProducts,
+  getProduct, 
+  createProduct, 
+  updateProduct, 
+  deleteProduct,
 } = require("../controllers/product.controller");
 const protect = require("../middleware/auth.middleware");
-const authorizeRoles = require("../middleware/role.middleware");
+const router = express.Router();
 
 // Specific routes before /:id to avoid collision
 router.get("/low-stock", protect, authorizeRoles("admin", "inventory"), getLowStockProducts);
