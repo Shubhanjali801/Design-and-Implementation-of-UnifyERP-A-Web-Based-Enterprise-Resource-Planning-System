@@ -1,5 +1,5 @@
 const GRN = require("../models/GRN");
-const PurchaseOrder = require("../models/Purchage.Order");
+const PurchaseOrder = require("../models/Purchase.Order");
 const Product = require("../models/Product");
 
 // @desc    Get all GRNs
@@ -136,8 +136,8 @@ exports.createGRN = async (req, res) => {
     });
 
     // Mark purchase order as is Partial confirmed o.w. received
-    await PurchaseOrder.findByIdAndUpdate(poId, {status: isPartial ? "confirmed" : "received" });
-    
+    await PurchaseOrder.findByIdAndUpdate(poId, { status: isPartial ? "confirmed" : "received" });
+
     const populated = await grn.populate([
       { path: "purchaseOrder", select: "status supplier" },
       { path: "receivedItems.product", select: "title SKU stock" },

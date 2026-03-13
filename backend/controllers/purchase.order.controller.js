@@ -1,4 +1,4 @@
-const PurchaseOrder = require("../models/Purchage.Order"); // Note: matches existing filename
+const PurchaseOrder = require("../models/Purchase.Order"); // Note: matches existing filename
 
 // @desc    Get all purchase orders
 // @route   GET /api/purchase-orders
