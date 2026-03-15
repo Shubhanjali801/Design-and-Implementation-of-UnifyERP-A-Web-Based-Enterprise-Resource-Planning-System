@@ -42,7 +42,7 @@ A full-featured **Enterprise Resource Planning (ERP)** web application built wit
 ![Grns ](frontend/public/images/grnsPage.png)
 
 ### Invoice Pdf
-![Invoice Pdf ](frontend/public/images/invoivePdf.png)
+![Invoice Pdf ](frontend/public/images/invoicePdf.png)
 ---
 
 ## ✨ Features
