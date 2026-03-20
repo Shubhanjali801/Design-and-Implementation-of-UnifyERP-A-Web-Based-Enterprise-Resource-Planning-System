@@ -11,8 +11,7 @@ import SalesOrdersPage from "../pages/salesOrders/SalesOrdersPage"
 import PurchaseOrdersPage from "../pages/purchaseOrders/PurchaseOrdersPage"
 import GRNPage from "../pages/grn/GRNPage"
 import InvoicesPage from "../pages/invoices/InvoicesPage"
-import UsersPage from "../pages/admin/UsersPage"
-
+import UsersPage from "../pages/admin/UsersPage" 
 const AppRoutes = () => (
   <Routes>
     <Route path="/login" element={<LoginPage />} />

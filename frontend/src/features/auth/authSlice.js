@@ -3,14 +3,14 @@ import axiosInstance from "../../api/axiosInstance"
 import { toast } from "react-toastify"
 // import { loginApi, logoutApi } from "../../api/authApi"
 // const res = await loginApi(credentials)
-
+const BASE = import.meta.env.VITE_API_URL  
 // ── Async Actions ──────────────────────────────────────────────
 
 export const loginUser = createAsyncThunk(
   "auth/login",
   async (credentials, { rejectWithValue }) => {
     try {
-      const res = await axiosInstance.post("/auth/login", credentials)
+      const res = await axiosInstance.post(`${BASE}/auth/login`, credentials)
       return res.data
     } catch (error) {
       return rejectWithValue(error.response?.data?.msg || "Login failed")
@@ -22,7 +22,7 @@ export const logoutUser = createAsyncThunk(
   "auth/logout",
   async (_, { rejectWithValue }) => {
     try {
-      await axiosInstance.post("/auth/logout")
+      await axiosInstance.post(`${BASE}/auth/logout`)
     } catch (error) {
       return rejectWithValue(error.response?.data?.msg || "Logout failed")
     }
