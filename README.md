@@ -6,7 +6,7 @@ A full-featured **Enterprise Resource Planning (ERP)** web application built wit
 
 ## 🚀 Live Demo
 
-> [Coming soon link here](https://drive.google.com/file/d/1Wjo5oBpbFxycWOby1FdgnoWQclmIqKn8/view?usp=drive_link)
+> [Live Demo](https://drive.google.com/file/d/1Wjo5oBpbFxycWOby1FdgnoWQclmIqKn8/view?usp=drive_link)
 
 ---
 
@@ -170,10 +170,10 @@ frontend/
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/unify-erp-frontend.git
+git clone https://github.com/Shubhanjali801/Design-and-Implementation-of-UnifyERP-A-Web-Based-Enterprise-Resource-Planning-System
 
 # Navigate to project folder
-cd unify-erp-frontend
+cd Design-and-Implementation-of-UnifyERP-A-Web-Based-Enterprise-Resource-Planning-System
 
 # Install dependencies
 npm install
@@ -184,7 +184,7 @@ npm install
 Create a `.env` file in the root:
 
 ```env
-VITE_API_BASE_URL=http://localhost:5000/api
+VITE_API_URL=https://erp-backend2-lbxe.onrender.com
 ```
 
 ### Run Development Server
@@ -306,7 +306,7 @@ erp-management-system
 
 This frontend connects to a Node.js + Express + MongoDB backend.
 
-> 🔗 Backend Repo: [Add your backend repo link here]
+> 🔗 [Backend Repo: ](https://github.com/Shubhanjali801/Design-and-Implementation-of-UnifyERP-A-Web-Based-Enterprise-Resource-Planning-System/tree/main/backend)
 
 Make sure the backend is running and the `VITE_API_BASE_URL` is set correctly.
 
