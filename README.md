@@ -6,7 +6,7 @@ A full-featured **Enterprise Resource Planning (ERP)** web application built wit
 
 ## 🚀 Live Demo
 
-> Coming soon link here
+> [Coming soon link here](https://drive.google.com/file/d/1Wjo5oBpbFxycWOby1FdgnoWQclmIqKn8/view?usp=drive_link)
 
 ---
 
