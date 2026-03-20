@@ -56,7 +56,7 @@ A full-featured **Enterprise Resource Planning (ERP)** web application built wit
 - Low Stock Products table with reorder alerts
 - Recent Sales Orders with live status chips
 
-### 📦 Products
+### 📦 Products 
 - Add, edit, delete products
 - Track stock levels and reorder thresholds
 - Low stock detection and alerts
@@ -164,7 +164,7 @@ frontend/
 ### Prerequisites
 - Node.js >= 18
 - npm or yarn
-- Backend API running (see backend repo)
+- Backend API running 
 
 ### Installation
 
@@ -179,9 +179,9 @@ cd Design-and-Implementation-of-UnifyERP-A-Web-Based-Enterprise-Resource-Plannin
 npm install
 ```
 
-### Environment Variables
+### Environment Variables frontend
 
-Create a `.env` file in the root:
+Create a `.env.production` file in the root:
 
 ```env
 VITE_API_URL=https://erp-backend2-lbxe.onrender.com
@@ -307,8 +307,6 @@ erp-management-system
 This frontend connects to a Node.js + Express + MongoDB backend.
 
 > 🔗 [Backend Repo: ](https://github.com/Shubhanjali801/Design-and-Implementation-of-UnifyERP-A-Web-Based-Enterprise-Resource-Planning-System/tree/main/backend)
-
-Make sure the backend is running and the `VITE_API_BASE_URL` is set correctly.
 
 ---
 
