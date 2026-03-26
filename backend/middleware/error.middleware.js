@@ -1,6 +1,6 @@
 /**
  * notFound  — catches requests to undefined routes (place before errorHandler)
- * errorHandler — global error handler (place last in server.js)
+ * errorHandler — global error handler 
  */
 
 const notFound = (req, res, next) => {
@@ -10,7 +10,7 @@ const notFound = (req, res, next) => {
 };
 
 const errorHandler = (err, req, res, next) => {
-  // Use response statusCode if already set, otherwise default to 500
+
   let statusCode = res.statusCode !== 200 ? res.statusCode : 500;
   let message = err.message || "Internal Server Error";
 
@@ -48,7 +48,6 @@ const errorHandler = (err, req, res, next) => {
   res.status(statusCode).json({
     success: false,
     message,
-    // Only expose stack trace in development
     stack: process.env.NODE_ENV === "development" ? err.stack : undefined,
   });
 };

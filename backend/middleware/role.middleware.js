@@ -1,7 +1,6 @@
 /**
  * authorizeRoles(...roles)
  * Usage in routes: router.get("/", protect, authorizeRoles("admin", "sales"), handler)
- * Must be placed AFTER auth.middleware (which sets req.user)
  */
 const authorizeRoles = (...roles) => {
   return (req, res, next) => {
