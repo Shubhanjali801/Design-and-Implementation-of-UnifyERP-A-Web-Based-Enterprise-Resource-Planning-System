@@ -1,8 +1,7 @@
 const User = require("../models/User");
 const { generateToken } = require("../utils/generate.token");
 
-// In-memory token blocklist for logout
-// For production, replace with Redis
+// In-memory token blocklist for logout (for demonstration purposes only)
 const tokenBlocklist = new Set();
 
 // ── Register ──────────────────────────────────────────────────
@@ -65,6 +64,7 @@ exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    // Input validation
     if (!email || !password) {
       return res.status(400).json({ msg: "Email and password are required" });
     }

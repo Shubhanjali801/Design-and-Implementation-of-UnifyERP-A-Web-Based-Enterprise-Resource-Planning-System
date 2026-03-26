@@ -1,7 +1,9 @@
 const Supplier = require("../models/Supplier");
 
-// GET all suppliers
-const getSuppliers = async (req, res) => {
+// @desc    Get all suppliers
+// @route   GET /api/suppliers
+// @access  Private 
+exports.getSuppliers = async (req, res) => {
   try {
 
     const suppliers = await Supplier.find();
@@ -21,8 +23,10 @@ const getSuppliers = async (req, res) => {
   }
 };
 
-// GET single supplier
-const getSupplier = async (req, res) => {
+// @desc    Get single supplier
+// @route   GET /api/suppliers/:id
+// @access  Private 
+exports.getSupplier = async (req, res) => {
 
   try {
 
@@ -51,8 +55,10 @@ const getSupplier = async (req, res) => {
 
 };
 
-// CREATE supplier
-const createSupplier = async (req, res) => {
+// @desc    Create new supplier
+// @route   POST /api/suppliers
+// @access  Private 
+exports.createSupplier = async (req, res) => {
 
   try {
 
@@ -80,8 +86,10 @@ const createSupplier = async (req, res) => {
 
 };
 
-// UPDATE supplier
-const updateSupplier = async (req, res) => {
+// @desc    Update supplier
+// @route   PUT /api/suppliers/:id
+// @access  Private 
+exports.updateSupplier = async (req, res) => {
 
   try {
 
@@ -114,8 +122,10 @@ const updateSupplier = async (req, res) => {
 
 };
 
-// DELETE supplier
-const deleteSupplier = async (req, res) => {
+// @desc    Delete supplier
+// @route   DELETE /api/suppliers/:id
+// @access  Private (Admin)
+exports.deleteSupplier = async (req, res) => {
 
   try {
 
@@ -142,12 +152,4 @@ const deleteSupplier = async (req, res) => {
 
   }
 
-};
-
-module.exports = {
-  getSuppliers,
-  getSupplier,
-  createSupplier,
-  updateSupplier,
-  deleteSupplier
 };
