@@ -34,11 +34,6 @@ const SalesOrdersPage = () => {
     dispatch(getSalesOrders({ page, limit: 10 }))
   }, [dispatch, page])
 
-//   const handleEdit = (order) => {
-//     setEditingOrder(order)
-//     setOpenForm(true)
-//   }
-
   const handleCancel = (id) => {
     if (window.confirm("Cancel this sales order? Stock will be restored.")) {
       dispatch(removeSalesOrder(id))
